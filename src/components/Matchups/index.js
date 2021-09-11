@@ -32,7 +32,7 @@ const Matchups = (props) => {
             <div>
                 {starters.map((starter) => {
                     return (
-                        <div key={starter.fullName}>
+                        <div key={starter.fullName} style={{fontWeight: starter.conflict ? 'bold' : 'normal'}}>
                             {getPlayerPrintString(starter)}
                         </div>
                     )

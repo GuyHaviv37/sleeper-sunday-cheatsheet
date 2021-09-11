@@ -30,6 +30,26 @@ const getStartersByTimeSlot = (starters) => {
     return result;
 }
 
+const addConflictClass = (userStarters, opponentStarters, weekTimeSlots) => {
+    console.log('before');
+    console.log('user', userStarters);
+    console.log('opponent', opponentStarters);
+    for (const timeSlot of weekTimeSlots) {
+        const userStartersInTimeSlot = userStarters[timeSlot];
+        const opponentStartersInTimeSlot = opponentStarters[timeSlot];
+        userStartersInTimeSlot && userStartersInTimeSlot.forEach((userStarter) => {
+            const opponentWithSameName = opponentStartersInTimeSlot.find((opponentStarter) => opponentStarter.fullName === userStarter.fullName);
+            if (opponentWithSameName) {
+                userStarter.conflict = true;
+                opponentWithSameName.conflict = true;
+            }
+        })
+    }
+    console.log('after');
+    console.log('user', userStarters);
+    console.log('opponent', opponentStarters);
+}
+
 export const buildStartersData = async (username) => {
     try {
         const week = getCurrentWeek();
@@ -40,8 +60,8 @@ export const buildStartersData = async (username) => {
         addGameDataToStarters(userStarters, teamsData);
         addGameDataToStarters(opponentStarters, teamsData);
         const userStartersByTime = getStartersByTimeSlot(userStarters);
-        console.log(userStartersByTime);
         const opponentStartersByTime = getStartersByTimeSlot(opponentStarters);
+        addConflictClass(userStartersByTime, opponentStartersByTime, weekTimeSlots);
         return {userStartersByTime, opponentStartersByTime, weekTimeSlots}
     } catch (err) {
         console.error(err);
