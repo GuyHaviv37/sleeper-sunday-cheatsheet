@@ -31,9 +31,6 @@ const getStartersByTimeSlot = (starters) => {
 }
 
 const addConflictClass = (userStarters, opponentStarters, weekTimeSlots) => {
-    console.log('before');
-    console.log('user', userStarters);
-    console.log('opponent', opponentStarters);
     for (const timeSlot of weekTimeSlots) {
         const userStartersInTimeSlot = userStarters[timeSlot];
         const opponentStartersInTimeSlot = opponentStarters[timeSlot];
@@ -45,9 +42,6 @@ const addConflictClass = (userStarters, opponentStarters, weekTimeSlots) => {
             }
         })
     }
-    console.log('after');
-    console.log('user', userStarters);
-    console.log('opponent', opponentStarters);
 }
 
 export const buildStartersData = async (username) => {
