@@ -35,7 +35,7 @@ const addConflictClass = (userStarters, opponentStarters, weekTimeSlots) => {
         const userStartersInTimeSlot = userStarters[timeSlot];
         const opponentStartersInTimeSlot = opponentStarters[timeSlot];
         userStartersInTimeSlot && userStartersInTimeSlot.forEach((userStarter) => {
-            const opponentWithSameName = opponentStartersInTimeSlot.find((opponentStarter) => opponentStarter.fullName === userStarter.fullName);
+            const opponentWithSameName = opponentStartersInTimeSlot?.find((opponentStarter) => opponentStarter.fullName === userStarter.fullName);
             if (opponentWithSameName) {
                 userStarter.conflict = true;
                 opponentWithSameName.conflict = true;
