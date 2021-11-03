@@ -40,8 +40,8 @@ export const addGameDataToStarters = (userStarters, teamData) => {
         for (const starter of leagueObj.starters) {
             starter.leagueName = leagueName;
             if (starter.team !== 'N/A') {
-                starter.gameDate = teamData[starter.team].gameDate;
-                starter.opponentString = teamData[starter.team].opponentString;
+                starter.gameDate = teamData[starter.team]?.gameDate;
+                starter.opponentString = teamData[starter.team]?.opponentString;
             }
         }
     }
